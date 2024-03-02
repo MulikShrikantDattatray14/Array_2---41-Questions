@@ -1,0 +1,39 @@
+https://www.youtube.com/watch?v=zQ2tZyqTpS8
+
+
+Input:
+5 3
+1 2 3 4 5
+1 2 3
+Output: 
+5
+Explanation: 
+1, 2, 3, 4 and 5 are the
+elements which comes in the union set
+of both arrays. So count is 5.
+
+
+function findUnionSize(arr1, arr2) {
+    // Create a HashMap to store unique elements
+    let hashMap = new Map();
+
+    // Add elements from the first array to the HashMap
+    for (let i = 0; i < arr1.length; i++) {
+        hashMap.set(arr1[i], true);
+    }
+
+    // Add elements from the second array to the HashMap
+    for (let i = 0; i < arr2.length; i++) {
+        hashMap.set(arr2[i], true);
+    }
+
+    // Return the size of the union (number of unique elements)
+    return hashMap.size;
+}
+
+// Example usage:
+let array1 = [1, 2, 3, 4, 5];
+let array2 = [3, 4, 5, 6, 7];
+
+let unionSize = findUnionSize(array1, array2);
+console.log("Size of the union: " + unionSize);

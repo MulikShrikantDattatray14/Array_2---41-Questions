@@ -1,0 +1,37 @@
+function countPairsWithSum(arr, K) {
+  let count = 0;
+  let hashmap = new Map();
+
+  // Traverse the array
+  for (let i = 0; i < arr.length; i++) {
+    // Calculate the complement (the number needed to get the sum K)
+    let complement = K - arr[i];
+
+    // Check if the complement is present in the hashmap
+    if (hashmap.has(complement)) {
+      // Increment the count if a pair is found
+      count += hashmap.get(complement);
+    }
+
+    // Update the hashmap with the current element
+    // Original line using ternary operator
+    // hashmap.set(arr[i], (hashmap.get(arr[i]) || 0) + 1);
+
+    // Equivalent line using if-else statement
+    if (hashmap.has(arr[i])) {
+      hashmap.set(arr[i], hashmap.get(arr[i]) + 1);
+    } else {
+      hashmap.set(arr[i], 1);
+    }
+  }
+
+  return count;
+}
+
+// Example usage
+const N = 4;
+const K = 6;
+const arr = [1, 5, 7, 1];
+
+const result = countPairsWithSum(arr, K);
+console.log("Output:", result);

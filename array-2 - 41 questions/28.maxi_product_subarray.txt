@@ -1,0 +1,40 @@
+Given an array Arr[] that contains N integers (may be positive, negative or zero). Find the product of the maximum product subarray.
+
+Example 1:
+
+Input:
+N = 5
+Arr[] = {6, -3, -10, 0, 2}
+Output: 180
+Explanation: Subarray with maximum product
+is [6, -3, -10] which gives product as 180.
+
+
+function maxProduct(arr, n) {
+    let maxp = BigInt(Number.MIN_SAFE_INTEGER);
+    let prod = 1n;  // Initialize prod as a BigInt
+
+    for (let i = 0; i < n; i++) {
+        prod *= BigInt(arr[i]);
+        maxp = maxp < prod ? prod : maxp;
+        if (prod === 0n) {
+            prod = 1n;
+        }
+    }
+
+    prod = 1n;
+    for (let i = n - 1; i >= 0; i--) {
+        prod *= BigInt(arr[i]);
+        maxp = maxp < prod ? prod : maxp;
+        if (prod === 0n) {
+            prod = 1n;
+        }
+    }
+
+    return maxp;
+}
+
+// Example usage:
+const arr = [3, -4, 0, 7, -13, 5, 14, 17, 18, 23, 25, -28, 27, -29, 28, -33, 33];
+const result = maxProduct(arr, arr.length);
+console.log(result.toString());

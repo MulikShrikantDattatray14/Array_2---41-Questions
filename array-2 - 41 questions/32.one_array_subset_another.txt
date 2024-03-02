@@ -1,0 +1,38 @@
+function isSubset(a1, a2) {
+    const mp = new Map();
+
+    const n = a1.length;
+    const m = a2.length;
+
+    if (n >= m) {
+        for (let i = 0; i < n; i++) {
+            if (mp.has(a1[i])) {
+                mp.set(a1[i], mp.get(a1[i]) + 1);
+            } else {
+                mp.set(a1[i], 1);
+            }
+        }
+
+        for (let i = 0; i < m; i++) {
+            if (mp.has(a2[i])) {
+                mp.set(a2[i], mp.get(a2[i]) - 1);
+                if (mp.get(a2[i]) === 0) {
+                    mp.delete(a2[i]);
+                }
+            } else {
+                return "No";
+            }
+        }
+    } else {
+        return "No";
+    }
+
+    return "Yes";
+}
+
+// Example usage:
+const array1 = [1, 2, 3, 4, 5, 6];
+const array2 = [2, 4, 6];
+const result = isSubset(array1, array2);
+console.log(result);
+

@@ -1,0 +1,16 @@
+//https://www.youtube.com/watch?v=Q7v239y-Tik
+
+// for n transactions : 
+
+
+
+let arr=[5,2,6,1,4,7,3,6];
+let n =arr.length ; 
+let profit = 0 ; 
+
+for(let i=1;i<arr.length;i++){
+    if(arr[i] > arr[i-1]){
+        profit += (arr[i]-arr[i-1])
+    }
+}
+console.log(profit)

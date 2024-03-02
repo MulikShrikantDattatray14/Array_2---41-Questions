@@ -1,0 +1,30 @@
+/**
+ * @param {number[][]} intervals
+ * @return {number[][]}
+ */
+var merge = function(intervals) {
+    return  merge1(intervals)
+    function merge1(intervals) {
+  const n = intervals.length;
+  intervals.sort((a, b) => a[0] - b[0]);
+  const ans = [];
+
+  let start = 0;
+  while (start < n) {
+    let i = start;
+    let j = start + 1;
+    let mergedEnd = intervals[start][1];
+
+    while (j < n && mergedEnd >= intervals[j][0]) {
+      mergedEnd = Math.max(mergedEnd, intervals[j][1]);
+      i++;
+      j++;
+    }
+
+    ans.push([intervals[start][0], mergedEnd]);
+    start = j;
+  }
+
+  return ans;
+}
+};

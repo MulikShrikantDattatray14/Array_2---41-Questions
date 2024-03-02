@@ -1,0 +1,84 @@
+An array contains both positive and negative numbers in random order. Rearrange the array elements so that all negative numbers appear before all positive numbers.
+
+Examples : 
+
+Input: -12, 11, -13, -5, 6, -7, 5, -3, -6
+Output: -12 -13 -5 -7 -3 -6 11 6 5
+
+1.Naive approach: The idea is to sort the array of elements, this will make sure that all the negative elements will come before all the positive elements.
+
+Time Complexity: O(n*log(n)), Where n is the length of the given array.
+Auxiliary Space: O(1)
+
+2.optimal approach - Dutch national flag approach : 
+We will divide the array into three partitions with the help of two pointers, low and high. 
+
+ar[1…low-1] negative integers
+ar[low…high] unknown
+ar[high+1…N] positive integers
+
+
+// Using Dutch National Flag Algorithm. 
+function reArrange(arr, n){ 
+	let low = 0,high = n - 1 
+	while(low<high){ 
+		if(arr[low] < 0) 
+			low += 1 
+		else if(arr[high] > 0) 
+			high -= 1 
+		else{ 
+			let temp = arr[low] 
+			arr[low] = arr[high] 
+			arr[high] = temp 
+		} 
+	} 
+} 
+
+let arr = [1, 2, -4, -5, 2, -7, 3, 2, -6, -8, -9, 3, 2, 1] 
+let n = arr.length 
+reArrange(arr,n) 
+console.log(arr)
+
+
+
+3. 2-pointer approach : 
+
+function shiftall(arr, left, right) {
+  // Loop to iterate over the
+  // array from left to the right
+  while (left <= right) {
+    // Condition to check if the left
+    // and the right elements are
+    // negative
+    if (arr[left] < 0 && arr[right] < 0) left += 1;
+    // Condition to check if the left
+    // pointer element is positive and
+    // the right pointer element is negative
+    else if (arr[left] > 0 && arr[right] < 0) {
+      let temp = arr[left];
+      arr[left] = arr[right];
+      arr[right] = temp;
+      left += 1;
+      right -= 1;
+    }
+
+    // Condition to check if both the
+    // elements are positive
+    else if (arr[left] > 0 && arr[right] > 0) right -= 1;
+    else {
+      left += 1;
+      right -= 1;
+    }
+  }
+}
+
+// Function to print the array
+
+// Driver Code
+let arr = [-12, 11, -13, -5, 6, -7, 5, -3, 11];
+let arr_size = arr.length;
+
+// Function Call
+shiftall(arr, 0, arr_size - 1);
+console.log(arr);
+

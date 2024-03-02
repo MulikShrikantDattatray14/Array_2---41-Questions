@@ -1,0 +1,30 @@
+function hasZeroSumSubarray(arr) {
+  // Create an empty set to store prefix sums
+  const prefixSumSet = new Set();
+  
+  // Initialize prefix sum and add 0 to the set
+  let prefixSum = 0;
+  prefixSumSet.add(prefixSum);
+  
+  // Iterate through the array
+  for (let i = 0; i < arr.length; i++) {
+      // Update the prefix sum
+      prefixSum += arr[i];
+      
+      // If the current prefix sum is already in the set, there is a subarray with sum 0
+      if (prefixSumSet.has(prefixSum)) {
+          return true;
+      }
+      
+      // Add the current prefix sum to the set
+      prefixSumSet.add(prefixSum);
+  }
+  
+  // If no subarray with sum 0 is found, return false
+  return false;
+}
+
+// Example usage
+const arr = [4, 2, -3, 1, 6];
+const result = hasZeroSumSubarray(arr);
+console.log(result); // Output: true

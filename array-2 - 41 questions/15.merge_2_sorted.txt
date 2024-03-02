@@ -1,0 +1,38 @@
+Problem statement: 
+
+Given two sorted arrays arr1[] and arr2[] of sizes n and m in non-decreasing order. Merge them in sorted order. Modify arr1 so that it contains the first N elements and modify arr2 so that it contains the last M elements.
+
+
+class Solution {
+    //Function to merge the arrays.
+    merge(arr1, arr2, n, m)
+    {
+       
+function merge1(arr1, arr2, n, m) {
+  //Declare 2 pointers:
+  let left = n - 1;
+  let right = 0;
+
+  //Swap the elements until arr1[left] is
+  // smaller than arr2[right]:
+  while (left >= 0 && right < m) {
+    if (arr1[left] > arr2[right]) {
+      [arr1[left], arr2[right]] = [arr2[right], arr1[left]];
+      left--, right++;
+    } else {
+      break;
+    }
+  }
+
+  // Sort arr1[] and arr2[] individually:
+  arr1.sort((a, b) => a - b);
+  arr2.sort((a, b) => a - b);
+  let final=[...arr1,...arr2]
+  return ([...final])
+}
+
+let ans=merge1(arr1, arr2, n, m);
+return (ans)
+
+    }
+}

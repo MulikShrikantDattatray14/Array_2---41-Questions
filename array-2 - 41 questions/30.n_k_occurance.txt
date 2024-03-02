@@ -1,0 +1,21 @@
+function countOccurrence(arr, n, k) {
+    // Your code here
+    const m = new Map();
+    const x = Math.floor(n / k);
+    let count = 0;
+
+    for (let i = 0; i < n; i++) {
+        let currentCount = 0;
+        if (m.has(arr[i])) {
+            currentCount = m.get(arr[i]);
+        }
+        m.set(arr[i], currentCount + 1);
+
+        if (m.get(arr[i]) > x) {
+            count += 1;
+            m.set(arr[i], -1000);
+        }
+    }
+
+    return count;
+}

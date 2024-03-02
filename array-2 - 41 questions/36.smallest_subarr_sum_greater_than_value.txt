@@ -1,0 +1,23 @@
+function sb(arr, n, x) {
+    let curr_sum = 0;
+    let min_len = n + 1;// also can consider it as Infinity
+    let start = 0;
+    let end = 0;
+    while (end < n) {
+        while (curr_sum <= x && end < n) {
+            curr_sum =  curr_sum +arr[end];
+            end++;
+        }
+        while (curr_sum > x && start < n) {
+           
+            min_len= Math.min((end-start ), min_len)
+
+            curr_sum = curr_sum -arr[start];
+            start++;
+        }
+    }
+    // If min_len is still n + 1, no subarray was found
+    return min_len === n + 1 ? 0 : min_len;
+}
+
+

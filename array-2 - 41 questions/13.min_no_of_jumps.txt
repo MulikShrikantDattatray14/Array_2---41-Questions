@@ -1,0 +1,16 @@
+// coding is passing the leetcode , but few test cases are missing in GFG
+var jump = function(nums) {
+
+    // modify the given num
+    //nums[0] will remain same 
+    for(let i=1;i<nums.length;i++){
+    nums[i]=Math.max(nums[i]+i, nums[i-1]);
+}
+ let jumps=0;
+ let i=0;
+ while(i<nums.length-1){
+    jumps++;
+    i=nums[i];
+ }
+ return jumps;
+};

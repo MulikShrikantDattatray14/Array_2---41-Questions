@@ -1,0 +1,36 @@
+function findPairsWithSum(arr, k) {
+  let pairs = [];
+  arr.sort((a, b) => a - b);
+
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+      let sum = arr[left] + arr[right];
+
+      if (sum === k) {
+          pairs.push([arr[left], arr[right]]);
+          left++;
+          right--;
+
+          // Skip duplicates
+          while (left < right && arr[left] === arr[left - 1]) left++;
+          while (left < right && arr[right] === arr[right + 1]) right--;
+      } else if (sum < k) {
+          left++;
+      } else {
+          right--;
+      }
+  }
+
+  return pairs;
+}
+
+let arr = [1, 5,7,1];
+let k = 6;
+
+let pairs = findPairsWithSum(arr, k);
+
+for (let pair of pairs) {
+  console.log(pair);
+}

@@ -1,0 +1,38 @@
+function minSwap(arr, n, k) {
+    // Complete the function
+    // count good elements and maintain window of this size
+    let count = 0;
+    for (let i = 0; i < n; ++i) {
+        if (arr[i] <= k) {
+            ++count;
+        }
+    }
+    //count bad elements- 1st window
+    let bad = 0;
+    for (let i = 0; i < count; ++i) {
+        if (arr[i] > k) {
+            ++bad;
+        }
+    }
+    let ans = bad;
+    for (let i = 0, j = count; j < n; ++i, ++j) {
+        if (arr[i] > k) {
+            --bad;
+        }
+        if (arr[j] > k) {
+            ++bad;
+        }
+
+        ans = Math.min(ans, bad);
+    }
+    return ans;
+}
+// Given input
+let arr = [2, 7, 9, 5, 8, 7, 4];
+let k = 6;
+
+// Function call
+let result = minSwap(arr, arr.length, k);
+
+// Output
+console.log(result);

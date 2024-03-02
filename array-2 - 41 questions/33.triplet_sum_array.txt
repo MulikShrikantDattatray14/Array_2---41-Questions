@@ -1,0 +1,34 @@
+function findTriplet(n, arr, X) {
+    arr.sort((a, b) => a - b);
+    for (let i = 0; i < n - 2; i++) {
+      let left = i + 1;
+      let right = n - 1;
+  
+      while (left < right) {
+        let sum = arr[i] + arr[left] + arr[right];
+  
+        if (sum === X) {
+          return 1; // Triplet found
+        } else if (sum < X) {
+          left++;
+        } else {
+          right--;
+        }
+      }
+    }
+  
+    return 0; // Triplet not found
+  }
+  
+  let arr = [1, 4, 45, 6, 10, 8];
+  let n = arr.length;
+  let X = 13;
+  
+  let result = findTriplet(n, arr, X);
+  
+  if (result === 1) {
+    console.log("Triplet found");
+  } else {
+    console.log("Triplet not found");
+  }
+  

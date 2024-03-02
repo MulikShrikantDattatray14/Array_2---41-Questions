@@ -1,0 +1,78 @@
+
+// brute force- n square approach 
+
+
+function subarrayWithGivenSum(arr, targetSum) {
+  const n = arr.length;
+
+  for (let start = 0; start < n; start++) {
+    let currentSum = 0;
+
+    for (let end = start; end < n; end++) {
+      currentSum += arr[end];
+
+      if (currentSum === targetSum) {
+        return [start, end]; // Found the subarray with the given sum.
+      }
+    }
+  }
+
+  return null; // Subarray with the given sum not found.
+}
+
+// Example usage:
+const arr = [1, 4, 20, 3, 10, 5];
+const targetSum = 33;
+
+const result = subarrayWithGivenSum(arr, targetSum);
+
+if (result) {
+  const [start, end] = result;
+  console.log(`Subarray with sum ${targetSum} found from index ${start} to ${end}: ${arr.slice(start, end + 1)}`);
+} else {
+  console.log(`Subarray with sum ${targetSum} not found.`);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+optimal approach : 
+
+
+function subarrayWithGivenSum(arr, targetSum) {
+  let left = 0;
+  let right = 0;
+  let currentSum = 0;
+
+  while (right < arr.length) {
+    currentSum += arr[right];
+
+    while (currentSum > targetSum && left <= right) {
+      // If current sum becomes greater than the target sum,
+      // move the left pointer to reduce the sum.
+      currentSum -= arr[left];
+      left++;
+    }
+
+    // Check if the current sum is equal to the target sum.
+    if (currentSum === targetSum) {
+      return [left, right]; // Found the subarray with the given sum.
+    }
+
+    right++; // Move the right pointer to extend the subarray.
+  }
+
+  return null; // Subarray with the given sum not found.
+}
+
+// Example usage:
+const arr = [1, 4, 20, 3, 10, 5];
+const targetSum = 33;
+
+const result = subarrayWithGivenSum(arr, targetSum);
+
+if (result) {
+  const [start, end] = result;
+  console.log(`Subarray with sum ${targetSum} found from index ${start} to ${end}: ${arr.slice(start, end + 1)}`);
+} else {
+  console.log(`Subarray with sum ${targetSum} not found.`);
+}

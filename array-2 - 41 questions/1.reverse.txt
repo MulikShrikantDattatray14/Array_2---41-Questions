@@ -1,0 +1,27 @@
+//Given an array (or string), the task is to reverse the array/string.
+
+1) Initialize start and end indexes as start = 0, end = n-1 
+2) Swap arr[start] with arr[end] 
+3) Recursively call reverse for rest of the array.
+
+
+==============================================================
+
+function reverseArray(arr) {
+    let leftPointer = 0;
+    let rightPointer = arr.length - 1;
+
+    while (leftPointer < rightPointer) {
+        // Swap elements at left and right pointers
+        [arr[leftPointer], arr[rightPointer]] = [arr[rightPointer], arr[leftPointer]];
+
+        // Move the pointers towards the center
+        leftPointer++;
+        rightPointer--;
+    }
+}
+
+// Example usage:
+let myArray = [1, 2, 3, 4, 5];
+reverseArray(myArray);
+console.log(myArray);

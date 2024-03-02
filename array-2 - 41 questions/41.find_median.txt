@@ -1,0 +1,14 @@
+ find_median(arr){
+     
+    // Sort the array in ascending order
+    arr = arr.sort((a, b) => a - b);
+
+    // Check if the array length is odd
+    if (arr.length % 2 !== 0) {
+        return arr[Math.floor(arr.length / 2)];
+    } else {
+        // Calculate the median for an even-length array
+        return Math.floor((arr[arr.length / 2 - 1] + arr[arr.length / 2]) / 2);
+    }
+
+    }

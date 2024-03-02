@@ -1,0 +1,28 @@
+function main() {
+  const arr = [7, 1, 5, 3, 6, 4];
+
+  const { buyIndex, sellIndex, maxPro } = maxProfit(arr);
+  console.log("Buy at index:", buyIndex);
+  console.log("Sell at index:", sellIndex);
+  console.log("Max profit is:", maxPro);
+}
+
+function maxProfit(arr) {
+  let maxPro = 0;
+  let minPrice = Number.MAX_VALUE;
+  let buyIndex = 0;
+  let sellIndex = 0;
+  for (let i = 0; i < arr.length; i++) {
+      if (arr[i] < minPrice) {// try finding the minimum buying point
+          minPrice = arr[i];
+          buyIndex = i;
+      } else if (arr[i] - minPrice > maxPro) {// using that minimum buying point, get the maximum difference
+          maxPro = arr[i] - minPrice;
+          sellIndex = i;
+      }
+  }
+  return { buyIndex, sellIndex, maxPro };
+}
+
+// Call the main function
+main();
